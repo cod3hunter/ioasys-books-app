@@ -11,6 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		5E6446A4029F46D28896BD6C /* Heebo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A7404F5F75A44DAA34ADE69 /* Heebo.ttf */; };
 		6172F2D35A4C3AA820D92908 /* libPods-IoasysBooksApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6423831EA8574132BED9D8CC /* libPods-IoasysBooksApp.a */; };
 		7EF68E3733C33B6898317E18 /* libPods-IoasysBooksApp-IoasysBooksAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFE59519B596E51CEFDCCC0 /* libPods-IoasysBooksApp-IoasysBooksAppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -30,6 +31,7 @@
 		00E356EE1AD99517003FC87E /* IoasysBooksAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IoasysBooksAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* IoasysBooksAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IoasysBooksAppTests.m; sourceTree = "<group>"; };
+		0A7404F5F75A44DAA34ADE69 /* Heebo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Heebo.ttf; path = ../src/assets/fonts/Heebo.ttf; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* IoasysBooksApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IoasysBooksApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = IoasysBooksApp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = IoasysBooksApp/AppDelegate.m; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				E233CBF5F47BEE60B243DCF8 /* Pods */,
+				96EB3705D4564E05974347AC /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -137,6 +140,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		96EB3705D4564E05974347AC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0A7404F5F75A44DAA34ADE69 /* Heebo.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		E233CBF5F47BEE60B243DCF8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +156,6 @@
 				6C97AB639B58BBB4B15BBE30 /* Pods-IoasysBooksApp-IoasysBooksAppTests.debug.xcconfig */,
 				1D0AE47A65C8663E3B452821 /* Pods-IoasysBooksApp-IoasysBooksAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -245,6 +255,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				5E6446A4029F46D28896BD6C /* Heebo.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

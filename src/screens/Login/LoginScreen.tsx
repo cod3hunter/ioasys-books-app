@@ -1,10 +1,15 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {View} from 'react-native';
 import styled from '../../styled-components';
 
-const Title = styled.Text`
-  color: ${props => props.theme.colors.primary};
+const ImgBackground = styled.ImageBackground`
+  flex: 1;
+  justify-content: center;
+`;
+
+const TextTest = styled.Text`
+  font-family: ${({theme}) => theme.font};
+  font-size: 50px;
 `;
 
 export type LoginScreenProps = NativeStackScreenProps<
@@ -14,9 +19,9 @@ export type LoginScreenProps = NativeStackScreenProps<
 
 const LoginScreen = ({}: LoginScreenProps) => {
   return (
-    <View>
-      <Title>LoginScreen</Title>
-    </View>
+    <ImgBackground source={require('../../assets/images/login-bg.png')}>
+      <TextTest>LoginScreen</TextTest>
+    </ImgBackground>
   );
 };
 

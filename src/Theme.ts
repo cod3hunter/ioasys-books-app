@@ -8,6 +8,7 @@ export interface ITheme {
     textLight: string;
     textMid: string;
   };
+  font: string;
 }
 
 export const defaultTheme: ITheme = {
@@ -18,4 +19,5 @@ export const defaultTheme: ITheme = {
     textLight: '#FFF',
     textMid: '#999',
   },
+  font: 'Heebo',
 };

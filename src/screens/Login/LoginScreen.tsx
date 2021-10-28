@@ -1,6 +1,11 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
+import styled from '../../styled-components';
+
+const Title = styled.Text`
+  color: ${props => props.theme.colors.primary};
+`;
 
 export type LoginScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -10,7 +15,7 @@ export type LoginScreenProps = NativeStackScreenProps<
 const LoginScreen = ({}: LoginScreenProps) => {
   return (
     <View>
-      <Text>LoginScreen</Text>
+      <Title>LoginScreen</Title>
     </View>
   );
 };

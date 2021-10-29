@@ -1,5 +1,5 @@
+import React, {useCallback} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React from 'react';
 import {
   ImgBackground,
   InputContainer,
@@ -16,10 +16,14 @@ export type LoginScreenProps = NativeStackScreenProps<
   'Login'
 >;
 
-const LoginScreen = ({}: LoginScreenProps) => {
+const LoginScreen = ({navigation}: LoginScreenProps) => {
+  const doLogin = useCallback(() => {
+    navigation.navigate('Landing');
+  }, [navigation]);
+
   return (
-    <ImgBackground source={require('../../assets/images/login-bg.png')}>
-      <AppNameComponent />
+    <ImgBackground source={require('@assets/images/login-bg.png')}>
+      <AppNameComponent light />
       <FormContainer>
         <InputParentContainer>
           <InputContainer>
@@ -32,7 +36,7 @@ const LoginScreen = ({}: LoginScreenProps) => {
             <InputLabel>Senha</InputLabel>
             <Input secureTextEntry />
           </InputContainer>
-          <ButtonComponent text="Entrar" onPress={() => {}} />
+          <ButtonComponent text="Entrar" onPress={doLogin} />
         </InputParentContainer>
       </FormContainer>
     </ImgBackground>

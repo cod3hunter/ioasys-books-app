@@ -21,6 +21,7 @@ module.exports = {
           '@screens': './src/screens',
           '@assets': './src/assets',
           '@styled': './src/styled-components',
+          '@theme': './src/Theme',
         },
       },
     ],

@@ -1,5 +1,5 @@
 import 'styled-components';
-
+import {scale} from 'react-native-size-matters';
 export interface ITheme {
   colors: {
     primary: string;
@@ -9,6 +9,11 @@ export interface ITheme {
     textMid: string;
   };
   font: string;
+  fontSizes: {
+    28: number;
+    12: number;
+    16: number;
+  };
 }
 
 export const defaultTheme: ITheme = {
@@ -20,4 +25,9 @@ export const defaultTheme: ITheme = {
     textMid: '#999',
   },
   font: 'Heebo',
+  fontSizes: {
+    28: scale(28),
+    12: scale(12),
+    16: scale(16),
+  },
 };

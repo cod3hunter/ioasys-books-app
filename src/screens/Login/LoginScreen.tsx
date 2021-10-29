@@ -1,16 +1,15 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import styled from '../../styled-components';
-
-const ImgBackground = styled.ImageBackground`
-  flex: 1;
-  justify-content: center;
-`;
-
-const TextTest = styled.Text`
-  font-family: ${({theme}) => theme.font};
-  font-size: 50px;
-`;
+import {
+  ImgBackground,
+  InputContainer,
+  InputLabel,
+  Input,
+  FormContainer,
+  InputParentContainer,
+} from './LoginStyled';
+import AppNameComponent from '@components/AppName/AppNameComponent';
+import ButtonComponent from '@components/Button/ButtonComponent';
 
 export type LoginScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -20,7 +19,22 @@ export type LoginScreenProps = NativeStackScreenProps<
 const LoginScreen = ({}: LoginScreenProps) => {
   return (
     <ImgBackground source={require('../../assets/images/login-bg.png')}>
-      <TextTest>LoginScreen</TextTest>
+      <AppNameComponent />
+      <FormContainer>
+        <InputParentContainer>
+          <InputContainer>
+            <InputLabel>Email</InputLabel>
+            <Input keyboardType="email-address" />
+          </InputContainer>
+        </InputParentContainer>
+        <InputParentContainer>
+          <InputContainer>
+            <InputLabel>Senha</InputLabel>
+            <Input secureTextEntry />
+          </InputContainer>
+          <ButtonComponent text="Entrar" onPress={() => {}} />
+        </InputParentContainer>
+      </FormContainer>
     </ImgBackground>
   );
 };

@@ -1,4 +1,5 @@
 import styled from '@styled';
+import {Platform} from 'react-native';
 
 export const SafeArea = styled.SafeAreaView`
   background-color: ${({theme}) => theme.colors.bgMid};
@@ -28,7 +29,7 @@ export const FilterContainer = styled.View`
 export const SearchContainer = styled.View`
   flex-direction: row;
   flex: 1;
-  padding: 8px;
+  padding: ${Platform.OS === 'ios' ? '8px' : '0'};
   justify-content: space-between;
   align-items: center;
   border-width: 1px;

@@ -1,3 +1,4 @@
+import {Platform} from 'react-native';
 import styled from '@styled';
 
 export const ImgBackground = styled.ImageBackground`
@@ -16,6 +17,7 @@ export const InputContainer = styled.View`
 
 export const InputParentContainer = styled.View`
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   flex-direction: row;
   width: 100%;
@@ -36,5 +38,8 @@ export const Input = styled.TextInput.attrs(() => ({
   autoCorrect: false,
 }))`
   color: ${({theme}) => theme.colors.textLight};
-  margin-top: 4px;
+  min-width: 50%;
+  padding: ${() => (Platform.OS === 'ios' ? '4px 0' : '0')};
+  font-family: ${({theme}) => theme.font};
+  font-size: ${({theme}) => theme.fontSizes[14]};
 `;

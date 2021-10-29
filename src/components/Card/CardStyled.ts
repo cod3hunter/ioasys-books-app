@@ -8,6 +8,7 @@ export const Container = styled.TouchableOpacity`
   flex-direction: row;
   margin-top: 16px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  elevation: 10;
 `;
 
 export const BookImage = styled.Image`
@@ -31,7 +32,7 @@ export const Text = styled.Text`
 `;
 
 export const Title = styled(Text)`
-  font-weight: 500;
+  font-weight: bold;
   size: ${({theme}) => theme.fontSizes[14]};
   color: ${({theme}) => theme.colors.textDark};
 `;

@@ -12,7 +12,7 @@ export const Container = styled.TouchableOpacity<ContainerProps>`
   border-width: ${({border}) => (border ? '1px' : '0')};
   border-color: ${({theme}) => theme.colors.textMid};
   border-radius: 32px;
-  align-self: flex-start;
+  align-self: center;
 `;
 
 export const Icon = styled(FeatherIcon)``;

@@ -11,6 +11,7 @@ import {
 } from './LandingStyled';
 import AppNameComponent from '@components/AppName/AppNameComponent';
 import IconButtonComponent from '@components/IconButton/IconButtonComponent';
+import CardComponent from '@components/Card/CardComponent';
 
 export type LandingScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -34,6 +35,8 @@ export default ({}: LandingScreenProps) => {
             <IconButtonComponent icon="filter" onPress={() => {}} size={18} />
           </FilterBtnContainer>
         </FilterContainer>
+        <CardComponent />
+        <CardComponent />
       </Container>
     </SafeArea>
   );

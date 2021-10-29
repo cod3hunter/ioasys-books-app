@@ -11,10 +11,11 @@ export interface ITheme {
   };
   font: string;
   fontSizes: {
-    28: number;
     12: number;
+    14: number;
     16: number;
     18: number;
+    28: number;
   };
 }
 
@@ -29,9 +30,10 @@ export const defaultTheme: ITheme = {
   },
   font: 'Heebo',
   fontSizes: {
-    28: scale(28),
     12: scale(12),
+    14: scale(14),
     16: scale(16),
     18: scale(18),
+    28: scale(28),
   },
 };

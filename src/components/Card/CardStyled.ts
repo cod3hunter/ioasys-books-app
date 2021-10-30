@@ -7,7 +7,7 @@ export const Container = styled.TouchableOpacity`
   padding: 16px;
   flex-direction: row;
   margin-top: 16px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   elevation: 10;
 `;
 

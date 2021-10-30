@@ -16,6 +16,7 @@ export interface ITheme {
     16: number;
     18: number;
     28: number;
+    32: number;
   };
 }
 
@@ -26,7 +27,7 @@ export const defaultTheme: ITheme = {
     textDark: '#333',
     textLight: '#FFF',
     textMid: '#999',
-    bgMid: '#E5E5E5',
+    bgMid: '#F6F4EF',
   },
   font: 'Heebo',
   fontSizes: {
@@ -35,5 +36,6 @@ export const defaultTheme: ITheme = {
     16: scale(16),
     18: scale(18),
     28: scale(28),
+    32: scale(32),
   },
 };

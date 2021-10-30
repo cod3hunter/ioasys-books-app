@@ -8,7 +8,7 @@ export const SafeArea = styled.SafeAreaView`
 
 export const Container = styled.View`
   flex: 1;
-  padding: 40px 16px;
+  padding: 40px 0;
 `;
 
 export const Header = styled.View`
@@ -49,3 +49,9 @@ export const SearchInput = styled.TextInput.attrs(({theme}) => ({
   max-width: 85%;
   color: ${({theme}) => theme.colors.textDark};
 `;
+
+export const BookList = styled.FlatList.attrs(() => ({
+  contentContainerStyle: {
+    padding: 16,
+  },
+}))``;

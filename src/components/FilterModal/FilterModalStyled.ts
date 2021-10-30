@@ -49,10 +49,10 @@ type TagProps = {
 };
 
 export const Tag = styled.TouchableOpacity<TagProps>`
-  border-color: ${({theme}) => theme.colors.bgMid};
+  border-color: ${({theme}) => theme.colors.textDark};
   padding: 8px 16px;
   border-radius: 44px;
-  border-width: ${({selected}) => (selected ? '0px' : '1px')};
+  border-width: ${({selected}) => (selected ? '0px' : '0.3px')};
   margin: 8px 4px 0 4px;
   background-color: ${({theme, selected}) =>
     selected ? theme.colors.secondary : 'transparent'};

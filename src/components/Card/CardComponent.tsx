@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {
   Container,
   TitleContainer,
@@ -10,21 +10,24 @@ import {
   BookImage,
 } from './CardStyled';
 
-export type CardComponentProps = {};
+export type CardComponentProps = {
+  onPress: (id: string) => void;
+  data: Book;
+};
 
-export default ({}: CardComponentProps) => {
+export default ({onPress, data}: CardComponentProps) => {
   return (
-    <Container>
+    <Container onPress={useCallback(() => onPress(data.id), [data, onPress])}>
       <BookImage source={require('@assets/images/book.png')} />
       <InfoContainer>
         <TitleContainer>
-          <Title>Crossing the Chasm</Title>
-          <Subtitle>Geoffrey A. Moore</Subtitle>
+          <Title>{data.title}</Title>
+          <Subtitle>{data.authors[0]}</Subtitle>
         </TitleContainer>
         <DetailsContainer>
-          <Text>150 páginas</Text>
-          <Text>Editora Loyola</Text>
-          <Text>Publicado em 2021</Text>
+          <Text>{data.pageCount} páginas</Text>
+          <Text>Editora {data.publisher}</Text>
+          <Text>Publicado em {data.published}</Text>
         </DetailsContainer>
       </InfoContainer>
     </Container>

@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {
   Container,
@@ -76,7 +76,17 @@ export default ({navigation}: LandingScreenProps) => {
   }, []);
   const onIconFilterPress = useCallback(() => setFilterModalVisible(true), []);
 
-  const ListHeaderComponent = useMemo(
+  const renderItem = useCallback(
+    ({item}) => (
+      <CardComponent
+        data={item}
+        onPress={() => navigation.navigate('Book', {id: item.id})}
+      />
+    ),
+    [navigation],
+  );
+
+  const ListHeaderComponent = useCallback(
     () => (
       <>
         <Header>
@@ -108,12 +118,7 @@ export default ({navigation}: LandingScreenProps) => {
           <BookList
             ListHeaderComponent={ListHeaderComponent}
             data={books}
-            renderItem={({item}) => (
-              <CardComponent
-                data={item}
-                onPress={() => navigation.navigate('Book', {id: item.id})}
-              />
-            )}
+            renderItem={renderItem}
           />
         </Container>
         <FilterModalComponent

@@ -28,12 +28,12 @@ export const DetailsContainer = styled.View``;
 export const Text = styled.Text`
   font-family: ${({theme}) => theme.font};
   color: ${({theme}) => theme.colors.textMid};
-  size: ${({theme}) => theme.fontSizes[12]};
+  font-size: ${({theme}) => `${theme.fontSizes[12]}px`};
 `;
 
 export const Title = styled(Text)`
   font-weight: bold;
-  size: ${({theme}) => theme.fontSizes[14]};
+  font-size: ${({theme}) => `${theme.fontSizes[14]}px`};
   color: ${({theme}) => theme.colors.textDark};
 `;
 

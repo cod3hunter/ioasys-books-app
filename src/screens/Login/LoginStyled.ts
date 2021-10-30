@@ -41,5 +41,5 @@ export const Input = styled.TextInput.attrs(() => ({
   min-width: 50%;
   padding: ${() => (Platform.OS === 'ios' ? '4px 0' : '0')};
   font-family: ${({theme}) => theme.font};
-  font-size: ${({theme}) => theme.fontSizes[14]};
+  font-size: ${({theme}) => `${theme.fontSizes[14]}px`};
 `;

@@ -8,16 +8,18 @@ export type IconButtonComponentProps = {
   onPress: () => void;
   border?: boolean;
   size?: number;
+  bgColor?: string;
 };
 
 export default ({
   icon,
   onPress,
-  border,
+  border = false,
   size = 18,
+  bgColor = 'transparent',
 }: IconButtonComponentProps) => {
   return (
-    <Container {...{onPress, border}}>
+    <Container {...{onPress, border, bgColor}}>
       <Icon
         name={icon}
         size={scale(size)}

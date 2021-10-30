@@ -16,6 +16,8 @@ import CardComponent from '@components/Card/CardComponent';
 import FilterModalComponent, {
   Filters,
 } from '@components/FilterModal/FilterModalComponent';
+import {logout} from '@store/slices/userSlice';
+import {useAppDispatch} from '@hooks/useAppDispatch';
 
 export type LandingScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -68,6 +70,8 @@ const books: Book[] = [
 ];
 
 export default ({navigation}: LandingScreenProps) => {
+  const dispatch = useAppDispatch();
+
   const [filterModalVisible, setFilterModalVisible] = useState(false);
 
   const onModalClose = useCallback(() => setFilterModalVisible(false), []);
@@ -75,7 +79,7 @@ export default ({navigation}: LandingScreenProps) => {
     console.log(filters);
   }, []);
   const onIconFilterPress = useCallback(() => setFilterModalVisible(true), []);
-
+  const onLogout = useCallback(() => dispatch(logout()), [dispatch]);
   const renderItem = useCallback(
     ({item}) => (
       <CardComponent
@@ -86,12 +90,12 @@ export default ({navigation}: LandingScreenProps) => {
     [navigation],
   );
 
-  const ListHeaderComponent = useCallback(
+  const listHeader = useCallback(
     () => (
       <>
         <Header>
           <AppNameComponent />
-          <IconButtonComponent border icon="log-out" onPress={() => {}} />
+          <IconButtonComponent border icon="log-out" onPress={onLogout} />
         </Header>
         <FilterContainer>
           <SearchContainer>
@@ -108,7 +112,7 @@ export default ({navigation}: LandingScreenProps) => {
         </FilterContainer>
       </>
     ),
-    [onIconFilterPress],
+    [onIconFilterPress, onLogout],
   );
 
   return (
@@ -116,7 +120,7 @@ export default ({navigation}: LandingScreenProps) => {
       <>
         <Container>
           <BookList
-            ListHeaderComponent={ListHeaderComponent}
+            ListHeaderComponent={listHeader}
             data={books}
             renderItem={renderItem}
           />

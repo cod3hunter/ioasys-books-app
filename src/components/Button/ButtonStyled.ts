@@ -12,12 +12,16 @@ export const Container = styled.TouchableOpacity<ContainerProps>`
   border-color: ${({outline, theme}) =>
     outline ? theme.colors.primary : 'white'};
   border-width: ${({outline}) => (outline ? '1px' : '0')};
-  align-self: flex-start;
+  align-self: center;
 `;
 
-export const Text = styled.Text`
+type TextProps = {
+  disabled?: boolean;
+};
+export const Text = styled.Text<TextProps>`
   color: ${({theme}) => theme.colors.primary};
   font-family: ${({theme}) => theme.font};
   font-weight: 500;
   font-size: ${({theme}) => `${theme.fontSizes[16]}px`};
+  opacity: ${({disabled}) => (disabled ? '0.5' : '1')};
 `;

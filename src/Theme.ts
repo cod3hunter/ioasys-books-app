@@ -8,6 +8,7 @@ export interface ITheme {
     textLight: string;
     textMid: string;
     bgMid: string;
+    error: string;
   };
   font: string;
   fontSizes: {
@@ -28,6 +29,7 @@ export const defaultTheme: ITheme = {
     textLight: '#FFF',
     textMid: '#999',
     bgMid: '#F6F4EF',
+    error: '#ff3333',
   },
   font: 'Heebo',
   fontSizes: {

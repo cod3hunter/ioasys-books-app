@@ -4,6 +4,7 @@ import styled from '@styled';
 export const ImgBackground = styled.ImageBackground`
   flex: 1;
   justify-content: center;
+  align-items: flex-start;
   padding: 16px;
 `;
 
@@ -12,7 +13,7 @@ export const FormContainer = styled.View`
 `;
 
 export const InputContainer = styled.View`
-  max-width: 70%;
+  flex: 1;
 `;
 
 export const InputParentContainer = styled.View`

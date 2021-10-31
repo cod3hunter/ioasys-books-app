@@ -1,4 +1,5 @@
 import React, {useCallback} from 'react';
+import FastImage from 'react-native-fast-image';
 import {
   Container,
   TitleContainer,
@@ -18,7 +19,10 @@ export type CardComponentProps = {
 const CardComponent = ({onPress, data}: CardComponentProps) => {
   return (
     <Container onPress={useCallback(() => onPress(data.id), [data, onPress])}>
-      <BookImage source={{uri: data.imageUrl}} />
+      <BookImage
+        source={{uri: data.imageUrl, priority: FastImage.priority.low}}
+        resizeMode={FastImage.resizeMode.contain}
+      />
       <InfoContainer>
         <TitleContainer>
           <Title>{data.title}</Title>

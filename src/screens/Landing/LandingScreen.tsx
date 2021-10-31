@@ -20,6 +20,7 @@ import {useAppDispatch} from '@hooks/useStore';
 import {useBooks} from '@hooks/useBooks';
 import ErrorComponent from '@components/Error/ErrorComponent';
 import {useBookFilter} from '@hooks/useBookFilter';
+import {scale} from 'react-native-size-matters';
 
 export type LandingScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -99,12 +100,21 @@ export default ({navigation}: LandingScreenProps) => {
     <SafeArea>
       <>
         <BookList
+          getItemLayout={(_, i) =>
+            ({
+              length: scale(170),
+              offset: scale(170) * i,
+              index: i,
+            } as any)
+          }
           ListHeaderComponent={listHeader}
           data={dataFiltered}
           keyExtractor={useCallback((_, i) => i, [])}
           renderItem={renderItem}
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.5}
+          updateCellsBatchingPeriod={6}
+          initialNumToRender={6}
         />
         <FilterModalComponent
           visible={filterModalVisible}

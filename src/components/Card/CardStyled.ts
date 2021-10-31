@@ -1,4 +1,6 @@
 import styled from '@styled';
+import FastImage from 'react-native-fast-image';
+import {scale} from 'react-native-size-matters';
 
 export const Container = styled.TouchableOpacity`
   background-color: white;
@@ -11,9 +13,9 @@ export const Container = styled.TouchableOpacity`
   elevation: 10;
 `;
 
-export const BookImage = styled.Image`
-  height: 122px;
-  width: 80px;
+export const BookImage = styled(FastImage)`
+  height: ${scale(122)}px;
+  width: ${scale(80)}px;
 `;
 
 export const InfoContainer = styled.View`

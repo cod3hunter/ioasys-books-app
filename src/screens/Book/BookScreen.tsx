@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import IconButtonComponent from '@components/IconButton/IconButtonComponent';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {
@@ -15,16 +15,30 @@ import {
   MidText,
   Label,
   ReviewContainer,
-  BigMidText,
   MidReviewText,
 } from './BookStyled';
+import {doGet} from '@services/RequestService';
+import ErrorComponent from '@components/Error/ErrorComponent';
 
 export type BookScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'Book'
 >;
 
-export default ({navigation}: BookScreenProps) => {
+export default ({navigation, route}: BookScreenProps) => {
+  const {id} = route.params;
+
+  const [data, setData] = useState<Book>();
+  const [error, setError] = useState<string>('');
+
+  useEffect(() => {
+    doGet<Book>({path: `/books/${id}`, needAuth: true})
+      .then(resp => setData(resp.data))
+      .catch(e => {
+        setError(e);
+      });
+  }, [id]);
+
   return (
     <SafeArea>
       <Container>
@@ -35,54 +49,51 @@ export default ({navigation}: BookScreenProps) => {
             onPress={useCallback(() => navigation.goBack(), [navigation])}
           />
         </Header>
+        <ErrorComponent text={error} visible={!!error} />
         <DataContainer>
-          <BookImage source={require('@assets/images/book.png')} />
-          <Title>Change By Design Secon line exame testing</Title>
-          <Authors>Daniel Mattos, José Leite, Terezo Santos</Authors>
+          <BookImage source={{uri: data?.imageUrl}} />
+          <Title>{data?.title}</Title>
+          <Authors>{data?.authors.join(', ')}</Authors>
           <InfoContainer>
             <Label>INFORMAÇÕES</Label>
             <Row>
               <Text>Páginas</Text>
-              <MidText>304 páginas</MidText>
+              <MidText>{data?.pageCount} páginas</MidText>
             </Row>
             <Row>
               <Text>Editora</Text>
-              <MidText>Editora Loyola</MidText>
+              <MidText>Editora {data?.publisher}</MidText>
             </Row>
             <Row>
               <Text>Publicação</Text>
-              <MidText>2020</MidText>
+              <MidText>{data?.published}</MidText>
             </Row>
             <Row>
               <Text>Idioma</Text>
-              <MidText>Inglês</MidText>
+              <MidText>{data?.language}</MidText>
             </Row>
             <Row>
               <Text>Título Original</Text>
-              <MidText>Change By Design</MidText>
+              <MidText>{data?.title}</MidText>
             </Row>
             <Row>
               <Text>ISBN-10</Text>
-              <MidText>006285666</MidText>
+              <MidText>{data?.isbn10}</MidText>
             </Row>
             <Row>
               <Text>ISBN-13</Text>
-              <MidText>978-00628566</MidText>
+              <MidText>{data?.isbn13}</MidText>
             </Row>
             <Row>
               <Text>Categoria</Text>
-              <MidText>Design Thinking</MidText>
+              <MidText>{data?.category}</MidText>
             </Row>
           </InfoContainer>
           <ReviewContainer>
             <Label>RESENHA DA EDITORA</Label>
             <MidReviewText>
-              {'\t'}Resenha da editora The subject of “design thinking” is the
-              rage at business schools, throughout corporations, and
-              increasingly in the popular press—due in large part to the work of
-              IDEO, a leading design firm, and its celebrated CEO, Tim Brown,
-              who uses this book to show how the techniques and strategies of
-              design belong at every level of business.
+              {'\t'}
+              {data?.description}
             </MidReviewText>
           </ReviewContainer>
         </DataContainer>

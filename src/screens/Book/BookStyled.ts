@@ -44,6 +44,8 @@ export const Authors = styled.Text`
   color: ${({theme}) => theme.colors.primary};
   font-family: ${({theme}) => theme.font};
   margin-top: 4px;
+  flex: 1;
+  flex-wrap: wrap;
 `;
 
 export const InfoContainer = styled.View`
@@ -78,11 +80,6 @@ export const MidReviewText = styled(MidText)`
   line-height: 18px;
   padding-top: 16px;
   flex-direction: row;
-`;
-
-export const BigMidText = styled(MidText)`
-  font-size: ${({theme}) => `${theme.fontSizes[32]}px`};
-  text-align: left;
 `;
 
 export const ReviewContainer = styled.View`

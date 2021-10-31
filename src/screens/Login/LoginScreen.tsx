@@ -10,7 +10,7 @@ import {
 } from './LoginStyled';
 import AppNameComponent from '@components/AppName/AppNameComponent';
 import ButtonComponent from '@components/Button/ButtonComponent';
-import {useAppDispatch} from '@hooks/useAppDispatch';
+import {useAppDispatch} from '@hooks/useStore';
 import {login, User} from '@store/slices/userSlice';
 import {doPost} from '@services/RequestService';
 import ErrorComponent from '@components/Error/ErrorComponent';

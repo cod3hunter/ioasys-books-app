@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {
   Header,
@@ -16,7 +16,7 @@ import FilterModalComponent, {
   Filters,
 } from '@components/FilterModal/FilterModalComponent';
 import {logout} from '@store/slices/userSlice';
-import {useAppDispatch} from '@hooks/useAppDispatch';
+import {useAppDispatch} from '@hooks/useStore';
 import {useBooks} from '@hooks/useBooks';
 import ErrorComponent from '@components/Error/ErrorComponent';
 import {useBookFilter} from '@hooks/useBookFilter';

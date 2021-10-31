@@ -29,7 +29,6 @@ export function doPost<Type>({
   if (needAuth) {
     const {token} = store.getState().user.data;
     headers.Authorization = `Bearer ${token}`;
-    console.log(data, token);
   }
   return axios.post(API_URL + path, data, {headers});
 }

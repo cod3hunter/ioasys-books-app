@@ -12,6 +12,7 @@ import {
   TagsContainer,
   Tag,
   TagText,
+  ScrollView,
 } from './FilterModalStyled';
 
 export type Filters = {
@@ -25,15 +26,10 @@ type FilterModalProps = {
   onFilterPress: (filters: Filters) => void;
 };
 
-type TagItem = {
-  id: string;
-  label: string;
-};
-
 type FilterItem = {
   id: 'category' | 'year';
   title: string;
-  tags: TagItem[];
+  tags: string[];
 };
 
 const allFilters: FilterItem[] = [
@@ -41,25 +37,32 @@ const allFilters: FilterItem[] = [
     id: 'category',
     title: 'Selecione a categoria',
     tags: [
-      {id: 'design1', label: 'Design'},
-      {id: 'design2', label: 'Design'},
-      {id: 'design3', label: 'Design'},
-      {id: 'design4', label: 'Design'},
-      {id: 'design5', label: 'Design'},
+      'Biografias',
+      'Coleções',
+      'Comportamento',
+      'Contos',
+      'Crítica Literária',
+      'Ficção Científica',
+      'Folclore',
+      'Genealogia',
+      'Humor',
+      'Infantojuvenis',
+      'Jogos',
+      'Jornais',
+      'Literatura Brasileira',
+      'Literatura Estrangeira',
+      'Livros Raros',
+      'Manuscritos',
+      'Poesia',
+      'Outros Assuntos',
     ],
   },
   {
     id: 'year',
     title: 'Selecione o ano',
-    tags: [
-      {id: '2015', label: '2015'},
-      {id: '2016', label: '2016'},
-      {id: '2017', label: '2017'},
-      {id: '2018', label: '2018'},
-      {id: '2019', label: '2019'},
-      {id: '2020', label: '2020'},
-      {id: '2021', label: '2021'},
-    ],
+    tags: Array.from({length: 6}, (_, i) =>
+      String(new Date().getFullYear() - i),
+    ),
   },
 ];
 
@@ -105,29 +108,31 @@ export default ({visible, onClose, onFilterPress}: FilterModalProps) => {
           <Header>
             <IconButtonComponent onPress={onClose} border icon="x" />
           </Header>
-          {allFilters.map((filterItem, i) => (
-            <MultiselectContainer key={i}>
-              <LabelFilter>{filterItem.title}</LabelFilter>
-              <TagsContainer>
-                {filterItem.tags.map(tagItem => {
-                  const isSelected = filters[filterItem.id].includes(
-                    tagItem.id as never,
-                  );
-                  return (
-                    <Tag
-                      selected={isSelected}
-                      onPress={onFilterChange({
-                        filterId: filterItem.id,
-                        tagId: tagItem.id,
-                      })}
-                      key={tagItem.id}>
-                      <TagText selected={isSelected}>{tagItem.label}</TagText>
-                    </Tag>
-                  );
-                })}
-              </TagsContainer>
-            </MultiselectContainer>
-          ))}
+          <ScrollView>
+            {allFilters.map((filterItem, i) => (
+              <MultiselectContainer key={i}>
+                <LabelFilter>{filterItem.title}</LabelFilter>
+                <TagsContainer>
+                  {filterItem.tags.map(tagItem => {
+                    const isSelected = filters[filterItem.id].includes(
+                      tagItem as never,
+                    );
+                    return (
+                      <Tag
+                        selected={isSelected}
+                        onPress={onFilterChange({
+                          filterId: filterItem.id,
+                          tagId: tagItem,
+                        })}
+                        key={tagItem}>
+                        <TagText selected={isSelected}>{tagItem}</TagText>
+                      </Tag>
+                    );
+                  })}
+                </TagsContainer>
+              </MultiselectContainer>
+            ))}
+          </ScrollView>
           <Footer>
             <ButtonComponent text="Filtrar" outline onPress={onFilter} />
           </Footer>

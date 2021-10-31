@@ -32,7 +32,6 @@ export const useBooks = ({
   const [error, setError] = useState('');
 
   useEffect(() => {
-    console.log('oi');
     setLoading(true);
     doGet<BooksResponse>({
       path: '/books',

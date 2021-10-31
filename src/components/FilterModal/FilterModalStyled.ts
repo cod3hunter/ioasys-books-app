@@ -70,3 +70,5 @@ export const Footer = styled.View`
   justify-content: center;
   flex-direction: row;
 `;
+
+export const ScrollView = styled.ScrollView``;

@@ -6,11 +6,6 @@ export const SafeArea = styled.SafeAreaView`
   flex: 1;
 `;
 
-export const Container = styled.View`
-  flex: 1;
-  padding: 40px 0;
-`;
-
 export const Header = styled.View`
   width: 100%;
   flex-direction: row;
@@ -46,7 +41,7 @@ export const SearchInput = styled.TextInput.attrs(({theme}) => ({
   autoCapitalize: 'none',
   autoCorrect: false,
 }))`
-  max-width: 85%;
+  flex: 1;
   color: ${({theme}) => theme.colors.textDark};
 `;
 

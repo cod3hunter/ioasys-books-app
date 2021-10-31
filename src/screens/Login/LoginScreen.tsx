@@ -44,8 +44,7 @@ const LoginScreen = ({}: LoginScreenProps) => {
       })
       .catch(e => {
         setError(
-          e.response?.data?.errors?.message ||
-            'Innfelizmente, algo deu errado.',
+          e.response?.data?.errors?.message || 'Infelizmente, algo deu errado.',
         );
         setLoading(false);
       });

@@ -15,10 +15,10 @@ export type CardComponentProps = {
   data: Book;
 };
 
-export default ({onPress, data}: CardComponentProps) => {
+const CardComponent = ({onPress, data}: CardComponentProps) => {
   return (
     <Container onPress={useCallback(() => onPress(data.id), [data, onPress])}>
-      <BookImage source={require('@assets/images/book.png')} />
+      <BookImage source={{uri: data.imageUrl}} />
       <InfoContainer>
         <TitleContainer>
           <Title>{data.title}</Title>
@@ -33,3 +33,5 @@ export default ({onPress, data}: CardComponentProps) => {
     </Container>
   );
 };
+
+export default React.memo(CardComponent);

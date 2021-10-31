@@ -1,7 +1,6 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {
-  Container,
   Header,
   SafeArea,
   FilterContainer,
@@ -18,68 +17,44 @@ import FilterModalComponent, {
 } from '@components/FilterModal/FilterModalComponent';
 import {logout} from '@store/slices/userSlice';
 import {useAppDispatch} from '@hooks/useAppDispatch';
+import {useBooks} from '@hooks/useBooks';
+import ErrorComponent from '@components/Error/ErrorComponent';
+import {useBookFilter} from '@hooks/useBookFilter';
 
 export type LandingScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'Landing'
 >;
 
-const books: Book[] = [
-  {
-    id: '123id',
-    title: 'Titulo',
-    description: 'descrição',
-    authors: ['Daniel Mattos'],
-    pageCount: '200',
-    category: 'categoria',
-    imageUrl: 'https://files-books.ioasys.com.br/Book-0.jpg',
-    isbn10: '006285',
-    isbn13: '9780-00231',
-    language: 'Inglês',
-    publisher: 'Intrínseca',
-    published: '2010',
-  },
-  {
-    id: '124id',
-    title: 'Titulo',
-    description: 'descrição',
-    authors: ['Daniel Mattos'],
-    pageCount: '200',
-    category: 'categoria',
-    imageUrl: 'https://files-books.ioasys.com.br/Book-0.jpg',
-    isbn10: '006285',
-    isbn13: '9780-00231',
-    language: 'Inglês',
-    publisher: 'Intrínseca',
-    published: '2010',
-  },
-  {
-    id: '125id',
-    title: 'Titulo',
-    description: 'descrição',
-    authors: ['Daniel Mattos'],
-    pageCount: '200',
-    category: 'categoria',
-    imageUrl: 'https://files-books.ioasys.com.br/Book-0.jpg',
-    isbn10: '006285',
-    isbn13: '9780-00231',
-    language: 'Inglês',
-    publisher: 'Intrínseca',
-    published: '2010',
-  },
-];
-
 export default ({navigation}: LandingScreenProps) => {
   const dispatch = useAppDispatch();
 
+  const [currentPage, setCurrentPage] = useState(1);
   const [filterModalVisible, setFilterModalVisible] = useState(false);
+  const [filters, setFilters] = useState<Filters>({category: [], year: []});
+  const [searchText, setSearchText] = useState('');
 
-  const onModalClose = useCallback(() => setFilterModalVisible(false), []);
-  const onFilterPress = useCallback((filters: Filters) => {
-    console.log(filters);
-  }, []);
-  const onIconFilterPress = useCallback(() => setFilterModalVisible(true), []);
+  const {data, error, hasMore} = useBooks({page: currentPage});
+  const dataFiltered = useBookFilter({data, filters, textFilter: searchText});
+
   const onLogout = useCallback(() => dispatch(logout()), [dispatch]);
+  const handleLoadMore = useCallback(() => {
+    if (hasMore) {
+      setCurrentPage(old => old + 1);
+    }
+  }, [hasMore]);
+
+  const handleSearchText = useCallback(() => {
+    if (searchText) {
+      setSearchText('');
+    }
+  }, [searchText]);
+
+  const searchInputIcon = useMemo(
+    () => (searchText ? 'x' : 'search'),
+    [searchText],
+  );
+
   const renderItem = useCallback(
     ({item}) => (
       <CardComponent
@@ -90,7 +65,7 @@ export default ({navigation}: LandingScreenProps) => {
     [navigation],
   );
 
-  const listHeader = useCallback(
+  const listHeader = useMemo(
     () => (
       <>
         <Header>
@@ -99,36 +74,42 @@ export default ({navigation}: LandingScreenProps) => {
         </Header>
         <FilterContainer>
           <SearchContainer>
-            <SearchInput />
-            <IconButtonComponent icon="search" onPress={() => {}} size={16} />
+            <SearchInput onChangeText={setSearchText} value={searchText} />
+            <IconButtonComponent
+              icon={searchInputIcon}
+              onPress={handleSearchText}
+              size={16}
+            />
           </SearchContainer>
           <FilterBtnContainer>
             <IconButtonComponent
               icon="filter"
-              onPress={onIconFilterPress}
+              onPress={() => setFilterModalVisible(true)}
               size={18}
             />
           </FilterBtnContainer>
         </FilterContainer>
+        <ErrorComponent visible={!!error} text={error} />
       </>
     ),
-    [onIconFilterPress, onLogout],
+    [error, handleSearchText, onLogout, searchInputIcon, searchText],
   );
 
   return (
     <SafeArea>
       <>
-        <Container>
-          <BookList
-            ListHeaderComponent={listHeader}
-            data={books}
-            renderItem={renderItem}
-          />
-        </Container>
+        <BookList
+          ListHeaderComponent={listHeader}
+          data={dataFiltered}
+          keyExtractor={useCallback((_, i) => i, [])}
+          renderItem={renderItem}
+          onEndReached={handleLoadMore}
+          onEndReachedThreshold={0.5}
+        />
         <FilterModalComponent
           visible={filterModalVisible}
-          onClose={onModalClose}
-          onFilterPress={onFilterPress}
+          onClose={useCallback(() => setFilterModalVisible(false), [])}
+          onFilterPress={setFilters}
         />
       </>
     </SafeArea>

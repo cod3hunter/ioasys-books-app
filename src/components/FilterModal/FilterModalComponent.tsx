@@ -66,7 +66,7 @@ const allFilters: FilterItem[] = [
 type FilterChangeProps = {
   filterId: 'category' | 'year';
   tagId: string;
-  onFilterPress: (filters: Filters) => void;
+  onFilterPress?: (filters: Filters) => void;
 };
 
 export default ({visible, onClose, onFilterPress}: FilterModalProps) => {

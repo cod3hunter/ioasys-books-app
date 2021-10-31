@@ -60,7 +60,7 @@ export const Tag = styled.TouchableOpacity<TagProps>`
 
 export const TagText = styled.Text<TagProps>`
   font-family: ${({theme}) => theme.font};
-  font-size: ${({theme}) => theme.fontSizes[12]};
+  font-size: ${({theme}) => `${theme.fontSizes[12]}px`};
   color: ${({theme, selected}) => (selected ? 'white' : theme.colors.textDark)};
 `;
 
